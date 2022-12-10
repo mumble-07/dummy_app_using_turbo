@@ -1,0 +1,70 @@
+<%= render "shared/navbar"%>
+
+<div class="dashboard-page">
+  <%= current_user.present? ? "" : "stranger" %>
+  <h2> welcome, <%= current_user.first_name %>! </h2>
+  <h5> 
+    today is <b><%= Date.today.strftime("%B") %> <%= Time.new.day %>, <%= Time.new.year %></b>
+  </h5>
+
+  <div class="dashbard-container">
+    <div class="dashbaord_column_1">
+          <table class = "table">
+            <tr scope="row">
+              <td class="td-header">category name</td>
+              <td class="td-header">category description</td>
+            </tr>
+
+        <%@categories.each do |category| %>
+          <%if category.user == current_user%>
+          <tr scope="row">
+            <td class="td-body"><%= category.category_name %></td>
+            <td class="td-body"><%= category.category_body %></td>
+            <div>
+              <td><button type="button" class="td-btn"><%= link_to "Show", category_path(category)%></button></td>
+              <td><button type="button" class="td-btn"><%= link_to "Edit", edit_category_path(category.id) %></button></td>
+              <td><button type="button" class="td-btn" data-method="delete">
+              <%#= link_to "Delete", category_path(category.id), 
+              data: { "turbo-method": :delete,
+                      controller: "confirmation",
+                      "confirmation-message-value": 'Are you sure?',
+                      action: "confirmation#confirm" 
+                    } %>
+                    <%= link_to "Delete", category_path(category.id),method: :delete, data: { confirm: "Are you sure to DELETE?" } %>
+                    </button></td>
+            </div>
+            </tr>
+          <%end%>
+        <%end%>
+      </table>
+      <div class = "add_category_button">
+        <button type="button"><%= link_to "Add new category +", new_category_path %></button>
+      </div>
+    </div>
+
+    <div class="dashboard_column_2">
+      <h3>deadlines</h3>
+      <div class="dashboard_column_2_container">
+        <%@tasks.each do |task| %>
+          <%if task.user == current_user%>
+              <%if task.deadline == Date.today%>
+              <div class = "dashboard_deadline_label">
+                <div class="card bg-light-pink mb-3">
+                  <div class="card-header bg-light-pink-header">
+                  <h2><%= link_to task.task_name, category_task_path(task.category_id, task.id) %></h2>
+                  </div>
+                  <div class="card-body">
+                    <h4><b>category:</b> <%= Category.find(task.category_id).category_name %></h4>
+                    <h4><b>description:</b> <%= task.task_body %></h4>
+                    <h4><b>status:</b> <%= task.status %></h4>
+                  </div>
+                </div>
+              </div>
+              <%end%>
+          <%end%>
+        <%end%>
+      </div>
+    </div>
+  </div>
+</div>
+

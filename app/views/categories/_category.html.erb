@@ -1,0 +1,21 @@
+<div class = container-lg>
+
+<div class = "category_show_container">
+  <div class = "category_name_label">
+    <h1><%= category.category_name %></h1> 
+  </div>
+
+  <div class = "category_description_label">
+    <h2><i><%= category.category_body %></i></h2>
+    <h3><b>total number of tasks in this category: </b><%= category.tasks.count %></h3>
+    <h3><b>tasks on-going: </b><%= category.tasks.where(status: "On-going").count %></h3>
+    <h3><b>tasks completed: </b><%= category.tasks.where(status: "Completed").count %></h3>
+  </div>
+  
+  </div>
+  <div class = "category_show_btn">
+    <td><%= link_to "Show tasks", category_tasks_path(category_id: @category.id) %></td>
+    <td><button type="button"><%= link_to "Back", categories_path %></button></td>
+  </div>
+
+</div>

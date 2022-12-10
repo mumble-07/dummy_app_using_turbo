@@ -1,0 +1,17 @@
+<div class = "container-lg">
+  <div class = "task_show_container">
+    <div class = "task_name_header">
+      <h1><%= @task.task_name%></h1>
+    </div>
+    <div class ="task_display">
+        <h2><i><%= @task.task_body %></i></h2>
+
+        <h3><b>belongs to: </b><%= @category.category_name %></h3>
+        <h3><b>status: </b><%= @task.status %></h3>
+        <h3><b>created: </b><%= @task.created_at.strftime("%B %d, %Y") %></h3>
+        <h3><b>deadline: </b><%= @task.deadline.strftime("%B %d, %Y") %></h3>
+
+    </div>
+  </div>
+  <td><button type="button" class="task_show_button"><%= link_to "Back", category_tasks_path %></button></td>
+</div>

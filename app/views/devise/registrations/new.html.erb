@@ -1,0 +1,47 @@
+<%# = render "shared/navbar"%>
+
+<div class="container-lg">
+
+  <h2> sign up </h2>
+  <h4> create an account for your basic journal app </h4>
+
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+
+    <div class="field">
+      <div class="field-label"><%= f.label :email, "EMAIL" %></div>
+      <div class="field-field"><%= f.email_field :email, autofocus: true, autocomplete: "email" %></div>
+    </div>
+
+    <div class="field">
+      <div class="field-label"><%= f.label :first_name, "FIRST NAME" %></div>
+      <div class="field-field"><%= f.text_field :first_name, autofocus: true, autocomplete: "First Name" %></div>
+    </div>
+
+    <div class="field">
+      <div class="field-label"><%= f.label :last_name, "LAST NAME" %></div>
+      <div class="field-field"><%= f.text_field :last_name, autofocus: true, autocomplete: "Last Name" %></div>
+    </div>
+
+    <div class="field">
+      <div class="field-label"><%= f.label :password, "PASSWORD" %></div>
+      <% if @minimum_password_length %>
+      <em style="font-size: 0.8rem; text-align: center;">(<%= @minimum_password_length %> characters minimum)</em>
+      <% end %>
+      <div class="field-field"><%= f.password_field :password, autocomplete: "new-password" %></div>
+    </div>
+
+    <div class="field">
+      <div class="field-label"><%= f.label :password_confirmation, "PASSWORD CONFIRMATION" %></div>
+      <div class="field-field"><%= f.password_field :password_confirmation, autocomplete: "new-password" %></div>
+    </div>
+
+    <div class = "register_form_action_button">
+      <div class="actions">
+        <%= f.submit "sign up" %>
+        <button type="button" class="field-btn"><%= render "devise/shared/links" %></button>
+      </div>
+    </div>
+  <% end %>
+
+</div>

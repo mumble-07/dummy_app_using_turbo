@@ -1,0 +1,35 @@
+<%#= render "shared/navbar"%>
+
+<div class="container-lg">
+
+  <h2>log in</h2>
+  <h4> new to the basic journal app? sign up <%= link_to "here", new_user_registration_path %>! </h4>
+
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <div class="field">
+      <div class="field-label"><%= f.label :email, "EMAIL" %></div>
+      <div class="field-field"><%= f.email_field :email, autofocus: true, autocomplete: "email" %></div>
+    </div>
+
+    <div class="field">
+      <div class="field-label", "PASSWORD"><%= f.label :password %><br /></div>
+      <div class="field-field"><%= f.password_field :password, autocomplete: "current-password" %></div>
+    </div>
+
+<div class = "remember-me">
+    <% if devise_mapping.rememberable? %>
+      <div class="field-remember-me">
+      
+        <%= f.label :remember_me, "remember me" %>
+        <%= f.check_box :remember_me %>
+      </div>
+    <% end %>
+</div>
+    <div class = "register_form_action_button actions">
+      <%= f.submit "Log in" %>
+    </div>
+
+    </div>
+  <% end %>
+
+</div>

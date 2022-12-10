@@ -1,0 +1,13 @@
+<div class = "home_page_container">
+  <div class = "home_page_greet">
+    <h1> journal-app </h1>
+    <h5> very straightforward. journaling made easy. <h5>
+
+    <% if user_signed_in? %>
+      <button type="button" class="home_page_btn"><%= link_to 'your dashboard', categories_path, class: 'nav-link-dashboard' %></button>
+    <% else %>
+      <button type="button" class="home_page_btn"><%= link_to 'get started!', new_user_registration_path, class: 'nav-link-dashboard' %></button>
+    <%end%>
+  </div>
+  
+</div>

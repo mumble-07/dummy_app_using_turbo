@@ -1,0 +1,38 @@
+<div class = "task_container">
+
+<h2><%= @category.category_name %>'s tasks</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th>NAME</th>
+      <th>DESCRIPTION</th>
+      <th>DEADLINE</th>
+      <th>STATUS</th>
+      <th>CREATED</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tasks.each do |task| %>
+    <tr>
+      <td><%= task.task_name %></td>
+      <td><%= task.task_body %></td>
+      <td><%= task.deadline.strftime("%B %d, %Y") %></td>
+      <td><%= task.status %></td>
+      <td><%= task.created_at.strftime("%B %d, %Y") %></td>
+
+      <td><button type="button"><%= link_to "Show", category_task_path(task.category_id, task.id) %></button></td> 
+      <td><button type="button"><%= link_to "Edit", edit_category_task_path(task.category_id, task.id) %></button></td> 
+      <td><button type="button"><%= link_to "Delete", category_task_path(task.category_id, task.id),method: :delete, data: { confirm: "Are you sure to DELETE?" } %></button></td> 
+    </tr>    
+    <%end%>
+
+  </tbody>
+</table>
+
+<div class="task_container_btn">
+  <button type="button"><%= link_to 'Add task +', new_category_task_path(@category_id) %></button>
+  <button type="button"><%= link_to 'Back', category_path(@category_id) %></button>
+</div>
+
+</div>

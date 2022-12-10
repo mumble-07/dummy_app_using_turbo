@@ -1,0 +1,30 @@
+<%= render "shared/navbar"%>
+
+<%= form_with scope: :category, model: @category, method: :put, local: true do |f| %>
+
+<div class="container-lg">
+  <h2> edit category </h2>
+  <% if @category.errors.any? %>
+    <ul>
+      <% @category.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+<div class="field">
+  <div class="field-label"><%= f.label :category_name %></div>
+  <div class="field-field"><%= f.text_field :category_name, autofocus: true %></div>
+</div>
+
+<div class="field">
+  <div class="field-label"><%= f.label :category_body, "category description" %></div>
+  <div class="field-field"><%= f.text_field :category_body %></div>
+</div>
+
+<div class="action-buttons-edit">
+  <%= f.submit %>
+  <button type="button"><%= link_to "Back", categories_path %></button>
+</div>
+
+</div>
+<% end %>

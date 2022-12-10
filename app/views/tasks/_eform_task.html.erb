@@ -1,0 +1,43 @@
+<%= form_with scope: :task, model: [@task.category, @task], locale: true do |f| %>
+
+  <div class="container-lg">
+    <h2> edit task </h2>
+    <% if @task.errors.any? %>
+      <ul>
+        <% @task.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <%end%>
+      </ul>
+    <%end%>
+  
+    <div class="field_task">
+      <div class="field-label"><%= f.label :"Task Name" %></div>
+      <div class="field-field"><%= f.text_field :task_name, autofocus: true %></div>
+    </div>
+  
+    <div class="field_task">
+      <div class="field-label"><%= f.label :"Task Body"%></div>
+      <div class="field-field"><%= f.text_field :task_body %></div>
+    </div>
+  
+    <div class="field_task">
+      <div class="field-label"><%= f.label :"Deadline"%></div>
+      <div class="field-field"><%= f.date_field :deadline %></div>
+    </div>
+  
+    <div class="field_task_radio">
+      <div class="field-label"><%= f.label :"Status"%></div>
+      <div class="field-label-radio"><%= f.radio_button :status, 'On-going' %>&nbsp; on-going</div> 
+      <div class="field-label-radio"><%= f.radio_button :status, 'Completed' %>&nbsp; completed</div>
+    </div>
+  
+    <div class="field_task hidden">
+      <th><%= f.number_field :user_id, id: :task_user_id, value: current_user.id, type: :hidden %></th>
+    </div>
+  
+  <div class="action-buttons-edit">
+      <%= f.submit :"update task" %>
+      <button type="button"><%= link_to "back", category_tasks_path %></button>
+  </div>
+  <% end %>
+  </div>
